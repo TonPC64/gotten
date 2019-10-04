@@ -49,11 +49,20 @@ func main() {
 
 	json.Unmarshal([]byte(j_string_map), &empty)
 
-	fmt.Printf("empty: %+v\n", empty)
+	// Not Flattened example
+	fmt.Printf("\nNot Flattened\n------------\n\n")
+	a, err := json.MarshalIndent(empty, "", "  ")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(string(a))
 
+	// Flattened example
+	fmt.Printf("\nFlattened\n---------\n\n")
 	f := flattened.Flatten("", empty)
-	fmt.Println(f)
-
-	f_string, _ := json.Marshal(f)
-	fmt.Println(string(f_string))
+	b, err := json.MarshalIndent(f, "", "  ")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(string(b))
 }
