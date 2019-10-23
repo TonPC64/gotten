@@ -1,3 +1,3 @@
-module gotten
+module github.com/hehnope/gotten
 
-go 1.12
+go 1.13

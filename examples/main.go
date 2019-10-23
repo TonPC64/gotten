@@ -21,33 +21,34 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"gotten/flattened"
+	"github.com/hehnope/gotten/flattened"
 )
 
 func main() {
-	j_string_map := `
-  {
-    "a": true,
-    "b": "22",
-    "c": {
-      "f": true,
-      "g": {
-        "m": 1,
-        "n": false
-      },
-      "aaa": {
-        "nest": 1,
-        "something": {
-          "verybig": true
-        }
-      }
-    }
-  }
-  `
+	jStringMap := `
+	{
+		"a": true,
+		"b": "22",
+		"c": {
+			"f": true,
+			"g": {
+				"m": 1,
+				"n": false
+			},
+			"aaa": {
+				"nest": 1,
+				"something": {
+					"verybig": true
+				}
+			}
+		}
+	}`
 
 	var empty map[string]interface{}
 
-	json.Unmarshal([]byte(j_string_map), &empty)
+	if err := json.Unmarshal([]byte(jStringMap), &empty); err != nil {
+		fmt.Println(err.Error())
+	}
 
 	// Not Flattened example
 	fmt.Printf("\nNot Flattened\n------------\n\n")
